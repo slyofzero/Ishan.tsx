@@ -50,7 +50,7 @@ const Hero = () => {
   return (
     <section
       id="intro"
-      className="invisible relative -z-10 h-[180vh] overflow-hidden text-xs font-bold uppercase text-white lg:h-[250vh] lg:text-base"
+      className="invisible relative -z-10 h-[180vh] overflow-hidden text-xs font-bold uppercase text-black dark:text-white lg:text-base"
     >
       {/* Main background image */}
       <div className={`${backgroundImage}`}></div>
@@ -123,6 +123,6 @@ export default Hero;
 
 // ------------------------------ Styling ------------------------------
 const backgroundImage =
-  "bg fixed top-0 left-0 -z-50 h-screen w-screen select-none bg-[url(/images/hero-bg.jpg)] bg-[length:1693px_2540px] brightness-[1.8] lg:brightness-150 lg:bg-cover";
+  "bg fixed top-0 left-0 -z-50 h-screen w-screen select-none bg-[url(/images/hero-bg.jpg)] bg-[length:1693px_2540px] invert dark:invert-0 dark:brightness-[1.8] dark:lg:brightness-150 lg:bg-cover";
 
 const heroNOTStyle = "line-through decoration-gray-700 decoration-4";
