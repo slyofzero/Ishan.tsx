@@ -1,5 +1,6 @@
-import "../styles/global.css";
+import "../styles/globals.css";
 import "../fonts/Morganite/morganite.css";
+import "../fonts/Ogg/ogg.css";
 import type { AppProps } from "next/app";
 
 function MyApp({ Component, pageProps }: AppProps) {

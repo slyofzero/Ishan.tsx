@@ -17,7 +17,7 @@
     }
 
     scrollbar-width: none;
-    scroll-behavior: smooth;
+    scroll-behavior: smooth !important;
     font-family: "Inter", sans-serif;
   }
 }

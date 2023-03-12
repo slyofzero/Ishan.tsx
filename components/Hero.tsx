@@ -15,9 +15,9 @@ const Hero = () => {
     // Animation to pan the background image by 10% as the user scrolls when the user has scrolled 10% of its height
     gsap.fromTo(
       ".bg",
-      { backgroundPosition: "50% 0%" },
+      { backgroundPosition: "50% 5%" },
       {
-        backgroundPosition: "50% 20%",
+        backgroundPosition: "50% 25%",
         ease: "none",
         scrollTrigger: {
           trigger: "#intro",
@@ -50,7 +50,7 @@ const Hero = () => {
   return (
     <section
       id="intro"
-      className="invisible relative -z-10 h-[180vh] overflow-hidden text-xs font-bold uppercase text-black dark:text-white lg:text-base"
+      className="invisible relative -z-10 h-screen overflow-hidden text-xs font-bold uppercase text-black dark:text-white lg:h-[150vh] lg:text-base"
     >
       {/* Main background image */}
       <div className={`${backgroundImage}`}></div>
@@ -60,7 +60,7 @@ const Hero = () => {
               Md - Visible, left side*/}
       <p className="invisible absolute top-0 left-0 h-full w-72 text-2xl leading-6 md:visible">
         {repeatText(
-          8,
+          3,
           <>
             Thou shalt <span className={heroNOTStyle}>not</span> use the default
             font in thy hero section. Thou shalt{" "}
@@ -86,7 +86,7 @@ const Hero = () => {
       >
         {/* Hero text */}
         <h1 className="absolute top-1/2 left-1/2 z-10 -translate-x-1/2 -translate-y-1/2 select-none font-morganite text-2xl tracking-[0.3em] lg:text-3xl">
-          Portfolio for Ishan Shishodiya
+          Portfolio of Ishan Shishodiya
         </h1>
 
         {/* Hero text background image */}

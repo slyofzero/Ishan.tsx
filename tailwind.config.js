@@ -13,6 +13,7 @@ module.exports = {
       },
       fontFamily: {
         morganite: "Morganite",
+        ogg: "Ogg",
       },
     },
   },
