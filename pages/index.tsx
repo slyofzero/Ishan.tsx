@@ -1,11 +1,15 @@
+import gsap from "gsap";
 import type { NextPage } from "next";
 import Head from "next/head";
+import { useEffect } from "react";
 
 import Hero from "../components/Hero";
 import LoadingScreen from "../components/LoadingScreen";
 import Navbar from "../components/Navbar";
 
 const Home: NextPage = () => {
+  const masterTl = gsap.timeline();
+
   return (
     <>
       <Head>
@@ -17,7 +21,7 @@ const Home: NextPage = () => {
       <Navbar />
       <main>
         <Hero />
-        <section className="h-screen bg-black"></section>
+        <section className="h-[200vh] bg-black"></section>
       </main>
     </>
   );

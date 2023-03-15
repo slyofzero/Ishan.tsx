@@ -1,11 +1,22 @@
 import Link from "next/link";
-import React from "react";
+import React, { useEffect, useRef } from "react";
 
 import { cva } from "class-variance-authority";
+import gsap from "gsap";
 
 const Navbar = () => {
+  // ------------------------------ Refs ------------------------------
+  const navBar = useRef<HTMLDivElement>(null);
+
+  // ------------------------------ Animations ------------------------------
+  useEffect(() => {
+    const ctx = gsap.context(() => {
+      gsap.set(navBar.current, { visibility: "visible" });
+    }, navBar);
+  }, []);
+
   return (
-    <nav className="fixed top-8 right-8 z-50">
+    <nav ref={navBar} className="invisible fixed top-8 right-8 z-40">
       <ul className="flex">
         <li className={navItemStyle()}>
           <Link href={"#intro"}>Intro</Link>

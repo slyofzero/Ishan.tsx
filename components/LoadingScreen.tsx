@@ -1,41 +1,39 @@
 import gsap from "gsap";
-import React, { useRef, useEffect } from "react";
+import CustomEase from "gsap/dist/CustomEase";
+import React, { useEffect, useRef } from "react";
 
 const LoadingScreen = () => {
-  // ------------------------------ Ref ------------------------------
+  // ------------------------------ Refs ------------------------------
   const loadingScreen = useRef<HTMLDivElement>(null);
 
   // ------------------------------ Animations ------------------------------
   useEffect(() => {
     const ctx = gsap.context(() => {
-      const tl = gsap.timeline();
-      const numberStagger = 1;
-      const appearDelay = 0.3;
-      const disappearDelay = appearDelay + numberStagger;
+      // Setting the loading screen to visible
+      gsap.set(loadingScreen.current, { visibility: "visible" });
 
-      tl.to(".number", {
-        opacity: 1,
-        stagger: numberStagger,
-        duration: 0,
-        delay: appearDelay,
+      //   Master timeline for this page
+      const tl = gsap.timeline({ delay: 1 });
+
+      // Animation for bouncing dots
+      tl.from(".dot", {
+        opacity: 0,
+        y: -50,
+        duration: 0.5,
+
+        ease: CustomEase.create(
+          "custom",
+          "M0,0 C0.14,0 0.242,0.438 0.272,0.561 0.313,0.728 0.354,0.963 0.362,1 0.366,0.992 0.54,0.6 0.7,0.6 0.855,0.599 0.996,0.991 1,1 "
+        ),
+        stagger: 0.25,
       });
-      tl.to(
-        ".number",
-        {
-          opacity: 0,
-          stagger: numberStagger,
-          duration: 0,
-        },
-        disappearDelay
-      );
-      tl.to(
-        loadingScreen.current,
-        {
-          x: "100%",
-          duration: 1,
-        },
-        "-=0.3"
-      );
+
+      //   Animation to slide the loading screen to the side
+      tl.to(loadingScreen.current, {
+        delay: 1.5,
+        xPercent: 100,
+        duration: 1,
+      });
     }, loadingScreen);
 
     return () => ctx.revert();
@@ -44,55 +42,27 @@ const LoadingScreen = () => {
   return (
     <section
       ref={loadingScreen}
-      className="fixed top-0 left-0 z-[51] flex h-screen w-screen select-none flex-col items-center justify-center bg-red-500 text-black"
+      className="invisible fixed top-0 left-0 z-50 h-screen w-screen bg-white dark:bg-black"
     >
-      {/* "Loading" circuluar text */}
-      <div className="absolute left-1/2 aspect-square h-[300px] -translate-x-1/2 -translate-y-1/2 md:top-[29%] md:h-[450px] lg:top-[15%]">
-        {Array.from(Array(4).keys()).map((index) => (
-          <div
-            key={index}
-            className="loading-text absolute top-0 left-1/2 flex aspect-square h-full origin-bottom-left overflow-hidden font-mono text-xl font-bold uppercase"
-            style={{ transform: `rotate(-${45 + 90 * index}deg)` }}
-          >
-            {"·Loading·".split("").map((letter, key) => {
-              return (
-                <span
-                  key={key}
-                  className={`absolute bottom-0 left-0 block h-1/2 origin-bottom`}
-                  style={{ transform: `rotate(${7 * key}deg)` }}
-                >
-                  {letter}
-                </span>
-              );
-            })}
-          </div>
-        ))}
+      <div className="absolute top-1/2 left-1/2 flex -translate-x-1/2 -translate-y-1/2 items-center justify-center gap-8 md:gap-24">
+        <div className={circleStyles}></div>
+        <div className={circleStyles}></div>
+        <div className={circleStyles}></div>
+        <div className={circleStyles}></div>
       </div>
 
-      {/* Numbers 4 3 2 1 0 */}
-      <div className="absolute top-1/2 left-1/2 flex h-96 w-96 -translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-full">
-        <h1 id="four" className={`${numberStyles} opacity-100`}>
-          4
-        </h1>
-        <h1 id="3" className={`${numberStyles} -translate-x-[40%]`}>
-          3
-        </h1>
-        <h1 id="2" className={`${numberStyles} -translate-x-[40%]`}>
-          2
-        </h1>
-        <h1 id="1" className={`${numberStyles}`}>
-          1
-        </h1>
-        <h1 id="1" className={`${numberStyles}`}>
-          0
-        </h1>
-      </div>
+      <p className="absolute left-1/2 bottom-[40%] flex w-full -translate-x-1/2 animate-pulse items-center justify-center text-[8px] uppercase text-white md:bottom-[35%] lg:bottom-[20%]">
+        <span>
+          This site has a hidden section, so be on the lookout for clues to
+          access it!
+        </span>
+      </p>
     </section>
   );
 };
 
 export default LoadingScreen;
 
-// ------------------------------ Styling  ------------------------------
-const numberStyles =
-  "number opacity-0 absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 font-ogg text-6xl text-[15rem] md:text-[22.5rem]";
+// ------------------------------ Styling ------------------------------
+const circleStyles =
+  "dot aspect-square h-12 rounded-full bg-black dark:bg-white md:h-24 lg:h-32";

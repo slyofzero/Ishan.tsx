@@ -5,38 +5,43 @@ gsap.registerPlugin(ScrollTrigger);
 
 const Hero = () => {
   // ------------------------------ Refs ------------------------------
+  const heroSection = useRef<HTMLDivElement>(null);
   const heroText = useRef<HTMLDivElement>(null);
 
   // ------------------------------ Animations ------------------------------
   useEffect(() => {
-    // Making the section visibile from invisible to avoid any weird element flashes
-    gsap.set("#intro", { visibility: "visible" });
+    const ctx = gsap.context(() => {
+      // Making the section visibile from invisible to avoid any weird element flashes
+      gsap.set(heroSection.current, { visibility: "visible" });
 
-    // Animation to pan the background image by 10% as the user scrolls when the user has scrolled 10% of its height
-    gsap.fromTo(
-      ".bg",
-      { backgroundPosition: "50% 5%" },
-      {
-        backgroundPosition: "50% 25%",
-        ease: "none",
-        scrollTrigger: {
-          trigger: "#intro",
-          start: "10% 0%",
-          end: "90% 0%",
-          scrub: 1.5,
-        },
+      // Animation to pan the background image by 10% as the user scrolls when the user has scrolled 10% of its height
+      gsap.fromTo(
+        ".bg",
+        { backgroundPosition: "50% 5%" },
+        {
+          backgroundPosition: "50% 25%",
+          ease: "none",
+          scrollTrigger: {
+            trigger: heroSection.current,
+            start: "10% 0%",
+            end: "90% 0%",
+            scrub: 1.5,
+          },
+        }
+      );
+
+      // Translating the hero text bg image by the number of pixels the hero text is positioned to left by
+      const rect = heroText.current?.getBoundingClientRect();
+
+      if (rect?.left) {
+        gsap.context(() => {
+          // Not adding anything would result in an identical background image positioning, by adding some numbers it gives the feel of refraction
+          gsap.set(".bg", { x: -(rect?.left + 10), y: -(rect.top + 10) });
+        }, heroText);
       }
-    );
+    }, heroSection);
 
-    // Translating the hero text bg image by the number of pixels the hero text is positioned to left by
-    const rect = heroText.current?.getBoundingClientRect();
-
-    if (rect?.left) {
-      gsap.context(() => {
-        // Not adding anything would result in an identical background image positioning, by adding some numbers it gives the feel of refraction
-        gsap.set(".bg", { x: -(rect?.left + 10), y: -(rect.top + 10) });
-      }, heroText);
-    }
+    return () => ctx.revert();
   }, []);
 
   // Function to repeat certain JSX text
@@ -49,7 +54,7 @@ const Hero = () => {
   // ------------------------------ JSX ------------------------------
   return (
     <section
-      id="intro"
+      ref={heroSection}
       className="invisible relative -z-10 h-screen overflow-hidden text-xs font-bold uppercase text-black dark:text-white lg:h-[150vh] lg:text-base"
     >
       {/* Main background image */}
@@ -62,16 +67,12 @@ const Hero = () => {
         {repeatText(
           3,
           <>
-            Thou shalt <span className={heroNOTStyle}>not</span> use the default
-            font in thy hero section. Thou shalt{" "}
-            <span className={heroNOTStyle}>not</span> use a black texture you
-            found on Unsplash as the background image. Thou shalt{" "}
-            <span className={heroNOTStyle}>not</span> overload the viewer's mind
-            with too much text and colors. Thou shalt{" "}
-            <span className={heroNOTStyle}>not</span> write gibberish. Thou
-            shalt <span className={heroNOTStyle}>not</span> meet deadlines. Thou
-            shalt <span className={heroNOTStyle}>not</span> have good github
-            commits.
+            Thou shalt not have a hidden section the user won't be able to find.
+            Thou shalt not use the default font in thy hero section. Thou shalt
+            not use a black texture you found on Unsplash as the background
+            image. Thou shalt not overload the viewer's mind with too much text
+            and colors. Thou shalt not write gibberish. Thou shalt not meet
+            deadlines. Thou shalt not have good github commits.
           </>
         )}
       </p>
@@ -124,5 +125,3 @@ export default Hero;
 // ------------------------------ Styling ------------------------------
 const backgroundImage =
   "bg fixed top-0 left-0 -z-50 h-screen w-screen select-none bg-[url(/images/hero-bg.jpg)] bg-[length:1693px_2540px] invert dark:invert-0 dark:brightness-[1.8] dark:lg:brightness-150 lg:bg-cover";
-
-const heroNOTStyle = "line-through decoration-gray-700 decoration-4";
