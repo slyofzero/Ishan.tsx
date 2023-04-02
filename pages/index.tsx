@@ -37,11 +37,14 @@ const Home: NextPage = () => {
         <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon" />
       </Head>
 
-      {/* <LoadingScreen /> */}
+      <LoadingScreen />
       <Navbar />
       <main>
         <Hero />
         <SecondSection />
+        <section className="h-screen bg-black text-white dark:bg-white dark:text-black">
+          <h1>Doggie</h1>
+        </section>
       </main>
     </>
   );

@@ -7,6 +7,7 @@ const Hero = () => {
   // ------------------------------ Refs ------------------------------
   const heroSection = useRef<HTMLDivElement>(null);
   const heroText = useRef<HTMLDivElement>(null);
+  const scrollDownGuider = useRef<HTMLDivElement>(null);
 
   // ------------------------------ Animations ------------------------------
   useEffect(() => {
@@ -39,6 +40,16 @@ const Hero = () => {
           gsap.set(".bg", { x: -(rect?.left + 10), y: -(rect.top + 10) });
         }, heroText);
       }
+
+      // Scroll down guider animation
+      gsap.to(scrollDownGuider.current, {
+        yPercent: 1000,
+        duration: 1,
+        ease: "sine.out",
+        repeat: -1,
+        repeatRefresh: false,
+        repeatDelay: 1,
+      });
     }, heroSection);
 
     return () => ctx.revert();
@@ -55,7 +66,7 @@ const Hero = () => {
   return (
     <section
       ref={heroSection}
-      className="hide-section invisible relative -z-10 h-screen overflow-hidden text-xs font-bold uppercase lg:h-[300vh] lg:text-base"
+      className="hide-section invisible relative -z-10 h-[200vh] overflow-hidden text-xs font-bold uppercase lg:h-[300vh] lg:text-base"
     >
       {/* Main background image */}
       <div className={`${backgroundImage}`}></div>
@@ -98,10 +109,10 @@ const Hero = () => {
               Sm - top right (partially hidden)
               Md - top right (not hidden)
               Lg - top center left (partially hidden)*/}
-      <p className="absolute top-[15%] right-[24px] w-48 text-xs md:right-[20%] md:w-64 lg:top-[5%] lg:left-[35%]">
-        A minimalist hero text is the trend these days but reallly overused. So
-        I am just gonna overload the page instead while still keeping the
-        minimalist background and font style because I like it this way.
+      <p className="absolute top-[200px] right-[24px] w-48 text-xs md:right-[20%] md:w-64 lg:top-[5%] lg:left-[35%]">
+        The whole website is designed to respond on scroll so just keep
+        scrolling, just keep scrolling, just keep scrolling &#9834; &#127900;
+        &#9834; &#127900;
       </p>
 
       {/* Creating Learning Designing
@@ -110,11 +121,22 @@ const Hero = () => {
               Lg - middle right (not hidden)*/}
       <p className="absolute top-[512px] right-[30%] h-full w-64 text-right text-sm leading-5 md:right-[15%] lg:right-[25%]">
         {repeatText(
-          15,
+          20,
           <>
             Creating <span className="text-yellow-300">Learning</span> Designing{" "}
           </>
         )}
+      </p>
+
+      <p className="absolute bottom-[300px] right-2 flex w-[250px] flex-col items-end gap-16 text-right text-xs md:right-12 md:w-[350px] lg:right-52 lg:w-[450px]">
+        The hidden section of the website just goes over the whole building
+        process of the website along with the various ideas I had when I was
+        designing the website, many of the ideas that I put into code but
+        rejected at the last moment for a better one, and my personal comments
+        and praises about my ideas... So yeah, it&apos;s the most important
+        section of the whole website. You&apos;d need a keyboard to access it
+        (huge clue tbh) so sorry mobile or tablet users, just hop on over to a
+        PC.
       </p>
     </section>
   );

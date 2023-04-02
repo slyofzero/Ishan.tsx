@@ -13,6 +13,9 @@ const SectionSection = () => {
   const sectionTransition = useRef<HTMLDivElement>(null);
   const transitionTrigger = useRef<HTMLDivElement>(null);
 
+  const scrollDownGuiderContainer = useRef<HTMLDivElement>(null);
+  const scrollDownGuider = useRef<HTMLDivElement>(null);
+
   useEffect(() => {
     const ctx = gsap.context(() => {
       gsap.from(heading.current, {
@@ -46,7 +49,7 @@ const SectionSection = () => {
       });
 
       gsap.to(sectionTransition.current, {
-        width: "120vmax",
+        width: "100vmax",
         scrollTrigger: {
           trigger: transitionTrigger.current,
           start: "100% 100%",
@@ -54,7 +57,23 @@ const SectionSection = () => {
           scrub: 2,
         },
       });
-    });
+
+      // Scroll down guider animation
+      gsap.from(scrollDownGuiderContainer.current, {
+        autoAlpha: 0,
+        delay: 5,
+        scrollTrigger: { trigger: scrollDownGuiderContainer.current },
+      });
+
+      gsap.to(scrollDownGuider.current, {
+        yPercent: 1000,
+        duration: 1,
+        ease: "sine.out",
+        repeat: -1,
+        repeatRefresh: false,
+        repeatDelay: 1,
+      });
+    }, secondSection);
 
     return () => ctx.revert();
   }, []);
@@ -62,7 +81,7 @@ const SectionSection = () => {
   return (
     <section
       ref={secondSection}
-      className="hide-section flex h-[500vh] flex-col overflow-hidden bg-white dark:bg-black"
+      className="hide-section flex h-[700vh] flex-col overflow-hidden bg-white dark:bg-black md:h-[500vh]"
     >
       <div
         ref={sectionMainText}
@@ -75,8 +94,8 @@ const SectionSection = () => {
           <span>
             Hello there! I&apos;m Ishan, a{" "}
             <span className="whitespace-nowrap">full-stack</span> developer
-            dedicated to creating beautiful and functional websites to boost
-            your business.
+            dedicated to creating beautiful, reponsive, and functional websites
+            to boost your business.
           </span>
           <span>
             I create awesome looking interactive websites, in a style you&apos;d
@@ -91,9 +110,25 @@ const SectionSection = () => {
           <span>Coding is art,</span>
           <span className="lg:ml-32">and coders are artists</span>
         </h1>
+
+        {/* Keep Scrolling guider */}
+        <div
+          ref={scrollDownGuiderContainer}
+          className="absolute bottom-4 right-1/4 flex items-center gap-8"
+        >
+          <div className="h-24 w-[3px] overflow-hidden  bg-transparent">
+            <div
+              ref={scrollDownGuider}
+              className="aboslute top-0 left-0 h-[12px] w-[3px] -translate-y-full bg-black dark:bg-white"
+            ></div>
+          </div>
+          <h3 className="text-xs font-extrabold">Keep Scrolling</h3>
+        </div>
+
+        {/* Transition box */}
         <div
           ref={sectionTransition}
-          className="absolute aspect-square w-0 rounded-full bg-black dark:bg-white"
+          className="absolute aspect-square w-0 bg-black dark:bg-white"
         ></div>
       </div>
 
