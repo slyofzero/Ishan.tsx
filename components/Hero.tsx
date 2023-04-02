@@ -55,7 +55,7 @@ const Hero = () => {
   return (
     <section
       ref={heroSection}
-      className="invisible relative -z-10 h-screen overflow-hidden text-xs font-bold uppercase text-black dark:text-white lg:h-[150vh] lg:text-base"
+      className="hide-section invisible relative -z-10 h-screen overflow-hidden text-xs font-bold uppercase lg:h-[300vh] lg:text-base"
     >
       {/* Main background image */}
       <div className={`${backgroundImage}`}></div>
@@ -63,16 +63,16 @@ const Hero = () => {
       {/* Main repeating text
               Sm - Invisible
               Md - Visible, left side*/}
-      <p className="invisible absolute top-0 left-0 h-full w-72 text-2xl leading-6 md:visible">
+      <p className="absolute top-0 left-0 h-full w-72 text-2xl leading-6 opacity-0 md:opacity-100">
         {repeatText(
-          3,
+          4,
           <>
-            Thou shalt not have a hidden section the user won't be able to find.
-            Thou shalt not use the default font in thy hero section. Thou shalt
-            not use a black texture you found on Unsplash as the background
-            image. Thou shalt not overload the viewer's mind with too much text
-            and colors. Thou shalt not write gibberish. Thou shalt not meet
-            deadlines. Thou shalt not have good github commits.
+            Thou shalt not have a hidden section the user won&apos;t be able to
+            find. Thou shalt not use the default font in thy hero section. Thou
+            shalt not use a black texture you found on Unsplash as the
+            background image. Thou shalt not overload the viewer&apos;s mind
+            with too much text and colors. Thou shalt not write gibberish. Thou
+            shalt not meet deadlines. Thou shalt not have good github commits.
           </>
         )}
       </p>

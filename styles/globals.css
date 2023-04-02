@@ -20,4 +20,8 @@
     scroll-behavior: smooth !important;
     font-family: "Inter", sans-serif;
   }
+
+  body {
+    @apply bg-white text-black dark:bg-black dark:text-white;
+  }
 }

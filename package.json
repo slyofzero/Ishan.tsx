@@ -1,4 +1,10 @@
 {
+  "name": "portfolio-website",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "https://github.com/slyofzero/Ishan.tsx.git",
+  "author": "Ishan Shishodiya <71858966+slyofzero@users.noreply.github.com>",
+  "license": "MIT",
   "private": true,
   "scripts": {
     "dev": "next dev",
@@ -8,7 +14,6 @@
     "prettier": "yarn prettier --write ./**/*.{jsx,tsx,html}"
   },
   "dependencies": {
-    "@react-spring/parallax": "^9.7.1",
     "class-variance-authority": "^0.4.0",
     "gsap": "^3.11.4",
     "next": "latest",
@@ -19,10 +24,12 @@
     "@types/node": "18.11.3",
     "@types/react": "18.0.21",
     "@types/react-dom": "18.0.6",
+    "@typescript-eslint/eslint-plugin": "^5.57.0",
+    "@typescript-eslint/parser": "^5.57.0",
     "autoprefixer": "^10.4.12",
+    "eslint": "^8.37.0",
+    "eslint-plugin-react": "^7.32.2",
     "postcss": "^8.4.21",
-    "postcss-cli": "^10.1.0",
-    "postcss-import": "^15.1.0",
     "prettier": "^2.8.4",
     "prettier-plugin-tailwindcss": "^0.2.4",
     "tailwindcss": "^3.2.4",

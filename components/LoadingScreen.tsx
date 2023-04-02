@@ -51,7 +51,7 @@ const LoadingScreen = () => {
         <div className={circleStyles}></div>
       </div>
 
-      <p className="absolute left-1/2 bottom-[40%] flex w-full -translate-x-1/2 animate-pulse items-center justify-center text-[8px] uppercase text-white md:bottom-[35%] lg:bottom-[20%]">
+      <p className="absolute left-1/2 bottom-[40%] flex w-full -translate-x-1/2 animate-pulse items-center justify-center text-[8px] uppercase md:bottom-[35%] lg:bottom-[20%]">
         <span>
           This site has a hidden section, so be on the lookout for clues to
           access it!
