@@ -12,9 +12,6 @@ const Hero = () => {
   // ------------------------------ Animations ------------------------------
   useEffect(() => {
     const ctx = gsap.context(() => {
-      // Making the section visibile from invisible to avoid any weird element flashes
-      gsap.set(heroSection.current, { visibility: "visible" });
-
       // Animation to pan the background image by 10% as the user scrolls when the user has scrolled 10% of its height
       gsap.fromTo(
         ".bg",
@@ -66,7 +63,7 @@ const Hero = () => {
   return (
     <section
       ref={heroSection}
-      className="hide-section invisible relative -z-10 h-[200vh] overflow-hidden text-xs font-bold uppercase lg:h-[300vh] lg:text-base"
+      className="hide-section relative -z-10 h-[200vh] overflow-hidden text-xs font-bold uppercase lg:h-[300vh] lg:text-base"
     >
       {/* Main background image */}
       <div className={`${backgroundImage}`}></div>
@@ -111,8 +108,8 @@ const Hero = () => {
               Lg - top center left (partially hidden)*/}
       <p className="absolute top-[200px] right-[24px] w-48 text-xs md:right-[20%] md:w-64 lg:top-[5%] lg:left-[35%]">
         The whole website is designed to respond on scroll so just keep
-        scrolling, just keep scrolling, just keep scrolling &#9834; &#127900;
-        &#9834; &#127900;
+        scrolling, just keep scrolling, just keep scrolling &#9834; &#127901;
+        &#9834; &#127901;
       </p>
 
       {/* Creating Learning Designing
@@ -128,7 +125,7 @@ const Hero = () => {
         )}
       </p>
 
-      <p className="absolute bottom-[300px] right-2 flex w-[250px] flex-col items-end gap-16 text-right text-xs md:right-12 md:w-[350px] lg:right-52 lg:w-[450px]">
+      <p className="absolute bottom-[150px] right-2 flex w-[250px] flex-col items-end gap-16 text-right text-xs md:bottom-[300px] md:right-12 md:w-[350px] lg:right-52 lg:w-[450px]">
         The hidden section of the website just goes over the whole building
         process of the website along with the various ideas I had when I was
         designing the website, many of the ideas that I put into code but

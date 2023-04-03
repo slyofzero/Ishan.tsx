@@ -8,7 +8,7 @@
 @layer components {
   html {
     ::-webkit-scrollbar {
-      width: 0px;
+      -webkit-appearance: none;
     }
 
     ::selection {

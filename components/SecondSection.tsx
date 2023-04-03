@@ -81,7 +81,7 @@ const SectionSection = () => {
   return (
     <section
       ref={secondSection}
-      className="hide-section flex h-[700vh] flex-col overflow-hidden bg-white dark:bg-black md:h-[500vh]"
+      className="hide-section flex h-[200vh] flex-col overflow-hidden bg-white dark:bg-black"
     >
       <div
         ref={sectionMainText}
@@ -122,14 +122,14 @@ const SectionSection = () => {
               className="aboslute top-0 left-0 h-[12px] w-[3px] -translate-y-full bg-black dark:bg-white"
             ></div>
           </div>
-          <h3 className="text-xs font-extrabold">Keep Scrolling</h3>
+          <h3 className="select-none text-xs font-extrabold">Keep Scrolling</h3>
         </div>
 
         {/* Transition box */}
-        <div
+        {/* <div
           ref={sectionTransition}
           className="absolute aspect-square w-0 bg-black dark:bg-white"
-        ></div>
+        ></div> */}
       </div>
 
       <div ref={transitionTrigger} className="h-[150vh]"></div>
